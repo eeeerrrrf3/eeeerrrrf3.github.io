@@ -3,36 +3,131 @@
 <head>
     <title>Открытие кейсов</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            background-color: #3e487d;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        #cases {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        .case {
+            text-align: center;
+        }
+
+        #item-panel {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #item-images {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #item-images img {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+        }
+
+        #open-button {
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        header {
+            background-color: #3f2997;
+            /* Цвет панели */
+            padding: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .logo {
+            width: 100px;
+            /* Размер логотипа */
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .case-panel {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: #262838;
+            /* Цвет панели */
+            max-width: 100%;
+            /* Максимальная ширина панели с кейсами */
+            max-height: 100%;
+            width: 100%;
+        }
+
+        .case-button img {
+            background-color: #111111;
+            /* Цвет панели */
+            border: none;
+            outline: none;
+            padding: 0;
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 10px;
+            /* Задайте радиус скругления, который вам нравится */
+        }
+
+        .case {
+            margin-right: 2cm;
+        }
+    </style>
 </head>
 <body>
     <header>
-    <img src="image/logo.png" alt="Логотип сайта" class="logo">
-</header>
+        <img src="image/logo.png" alt="Логотип сайта" class="logo">
+    </header>
 
-<section id="cases">
-    <div class="case-panel">
-        <div class="case">
-            <img src="image/case1.png" alt="Кейс 1">
-            <button onclick="openCase(1)">Открыть кейс</button>
+    <section id="cases">
+        <div class="case-panel">
+            <div class="case">
+                <button onclick="openCase(1)" class="case-button">
+                    <img src="image/case1.png" alt="Кейс 1">
+                </button>
+            </div>
+
+            <div class="case">
+                <button onclick="openCase(1)" class="case-button">
+                    <img src="image/case1.png" alt="Кейс 1">
+                </button>
+            </div>
+
+            <div class="case">
+                <button onclick="openCase(2)" class="case-button">
+                    <img src="image/case1.png" alt="Кейс 2">
+                </button>
+            </div>
+
+            <div class="case">
+                <button onclick="openCase(3)" class="case-button">
+                    <img src="image/case1.png" alt="Кейс 3">
+                </button>
+            </div>
+
+            <div class="case">
+                <button onclick="openCase(4)" class="case-button">
+                    <img src="image/case1.png" alt="Кейс 4">
+                </button>
+            </div>
         </div>
-        <div class="case">
-            <img src="image/case2.png" alt="Кейс 2">
-            <button onclick="openCase(2)">Открыть кейс</button>
-        </div>
-        <div class="case">
-            <img src="image/case3.png" alt="Кейс 3">
-            <button onclick="openCase(3)">Открыть кейс</button>
-        </div>
-        <div class="case">
-            <img src="image/case4.png" alt="Кейс 4">
-            <button onclick="openCase(4)">Открыть кейс</button>
-        </div>
-        <div class="case">
-            <img src="image/case5.png" alt="Кейс 5">
-            <button onclick="openCase(5)">Открыть кейс</button>
-        </div>
-    </div>
-</section>
+    </section>
+
     <section id="item-panel" style="display: none;">
         <div id="item-images">
             <!-- Здесь будут отображаться изображения предметов -->
