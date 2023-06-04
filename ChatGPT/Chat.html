@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TopikHub</title>
+    <link rel="shortcut icon" href="Untitled Project.jpg" type="image/png">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="chat">
+      <div class="chat-header">
+        <h2>Чат с ботом.</h2>
+      </div>
+      <div class="chat-messages">
+        <ul>
+        </ul>
+      </div>
+      <div class="chat-input">
+        <form onsubmit="sendMessage(event)">
+          <input id="message-input" type="text" placeholder="Введите сообщение...">
+          <button type="submit">Отправить</button>
+        </form>
+        <div id="typing-animation" style="display: none;">Печатает...</div>
+      </div>
+    </div>
+    <script src="answers.js"></script>
+    <script>
+      function sendMessage(event) {
+        event.preventDefault();
+        const messageInput = document.getElementById('message-input');
+        const messageText = messageInput.value;
+        const typingAnimation = document.getElementById('typing-animation');
+        typingAnimation.style.display = 'block';
+        messageInput.value = '';
+        addMessage('sent', messageText);
+        setTimeout(() => {
+          // Получить ответ на вопрос
+          const answer = getAnswer(messageText);
+          typingAnimation.style.display = 'none';
+          addMessage('received', answer);
+        }, 5000); // ожидание 5 секунд перед ответом
+      }
+      
+  function getAnswer(question) {
+    // Получить ответ на вопрос из файла answers.js
+    const answers = getAnswers();
+    return answers[question] || 'Извините, я не знаю ответ на этот вопрос.';
+  }
+
+  function addMessage(className, text) {
+    const messages = document.querySelector('.chat-messages ul');
+    const message = document.createElement('li');
+    message.classList.add('message', className);
+    message.textContent = text;
+    messages.appendChild(message);
+  }
+</script>
+  </body>
+</html>
