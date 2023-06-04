@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Game</title>
+<style>
+  body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    color: white; /* Добавлено */
+  }
+
+  canvas {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: rgb(18, 255, 58);
+    border-width: 5px;
+  }
+
+  .game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: white; /* Добавлено */
+  }
+
+  .restart-button {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white; /* Добавлено */
+  }
+
+  .game-area {
+    position: relative;
+    width: 919px;
+    height: 659px;
+    margin: 0 auto;
+    background-image: url('1fon.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white; /* Добавлено */
+  }
+  
+  .level-2 .game-area {
+    background-image: url('2fon.png');
+  }
+  
+  .level-3 .game-area {
+    background-image: url('3fon.png');
+  }
+  
+  .level-4 .game-area {
+    background-image: url('4fon.png');
+  }
+  
+  .level-5 .game-area {
+    background-image: url('5fon.png');
+  }
+  
+  .level-6 .game-area {
+    background-image: url('6fon.png');
+  }
+  
+</style>
+</head>
+<body>
+<div class="game-area">
+  <canvas id="canvas" width="910" height="650"></canvas>
+  <div id="gameOverText" class="game-over" style="display: none;">Game Over :(</div>
+  <div id="winText" class="game-over" style="display: none;">Вы победили!</div>
+  <button id="restartButton" class="restart-button" style="display: none;">
+    <img src="game-ower.jpg" alt="Restart" width="100" height="100">
+  </button>
+</div>
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Создаем игровые объекты
+  let player = {
+    x: 50,
+    y: 150,
+    width: 50,
+    height: 50,
+    yVelocity: 0,
+    isJumping: false
+  };
+
+  let obstacles = [];
+  let gameSpeed = 6;
+  let maxGameSpeed = 17; // Максимальная скорость
+  let isGameOver = false;
+  let score = 0;
+  let level = 1;
+
+  // Создаем функцию для создания препятствий
+  function spawnObstacle() {
+    let obstacle = {
+      x: canvas.width,
+      y: canvas.height - 50,
+      width: 20,
+      height: 50
+    };
+    obstacles.push(obstacle);
+  }
+
+  // Обработчик нажатия на клавишу или щелчка мыши
+  function handleJump() {
+    if (!player.isJumping) {
+      player.isJumping = true;
+      player.yVelocity = -35;
+    }
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.code === 'Space') {
+      handleJump();
+    }
+  });
+
+  canvas.addEventListener('mousedown', handleJump);
+
+  // Функция для обновления игры
+  function update() {
+    // Обновляем положение игрока
+    player.yVelocity += 1.5;
+    player.y += player.yVelocity;
+
+    // Проверяем, не выходит ли игрок за границы холста
+    if (player.y > canvas.height - player.height) {
+      player.y = canvas.height - player.height;
+      player.isJumping = false;
+    }
+
+    // Обновляем положение препятствий и проверяем столкновения
+    for (let i = 0; i < obstacles.length; i++) {
+      obstacles[i].x -= gameSpeed;
+
+      // Проверяем столкновение с игроком
+      if (
+        player.x < obstacles[i].x + obstacles[i].width &&
+        player.x + player.width > obstacles[i].x &&
+        player.y < obstacles[i].y + obstacles[i].height &&
+        player.y + player.height > obstacles[i].y
+      ) {
+        isGameOver = true;
+        showGameOver();
+      }
+
+      // Удаляем препятствия, которые вышли за границы холста
+      if (obstacles[i].x < -obstacles[i].width) {
+        obstacles.splice(i, 1);
+        i--;
+        score += 1;
+
+        if (score >= 120) {
+          isGameOver = true;
+          showWin();
+        }
+
+        if (score % 5 === 0 && gameSpeed < maxGameSpeed) {
+          gameSpeed += 1;
+        }
+      }
+    }
+
+    // Добавляем новые препятствия
+    if (obstacles.length < 1 && !isGameOver) {
+      spawnObstacle();
+    }
+  }
+
+  // Функция для отрисовки игры
+  function draw() {
+    // Очищаем холст
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Рисуем игрока
+    ctx.fillStyle = '#FF0000';
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+
+    // Рисуем препятствия
+    ctx.fillStyle = '#0000FF';
+    for (let i = 0; i < obstacles.length; i++) {
+      ctx.fillRect(
+        obstacles[i].x,
+        obstacles[i].y,
+        obstacles[i].width,
+        obstacles[i].height
+      );
+    }
+
+    // Рисуем счет, уровень и скорость
+    ctx.fillStyle = 'white'; /* Изменено */
+    ctx.font = '24px Arial';
+    ctx.fillText(`Счет: ${score}`, 10, 30);
+    ctx.fillText(`Уровень: ${level}`, 10, 60);
+    ctx.fillText(`Скорость: ${gameSpeed}`, 10, 90);
+  }
+
+  // Функция игрового цикла
+  function gameLoop() {
+    if (isGameOver) {
+      return;
+    }
+    update();
+    draw();
+    window.requestAnimationFrame(gameLoop);
+  }
+
+  // Функция для показа таблички "Game Over" и кнопки перезагрузки
+  function showGameOver() {
+    const gameOverText = document.getElementById('gameOverText');
+    const restartButton = document.getElementById('restartButton');
+    gameOverText.style.display = 'block';
+    restartButton.style.display = 'block';
+    restartButton.addEventListener('click', function() {
+      location.reload();
+    });
+  }
+
+  // Функция для показа таблички "Вы победили" и кнопки перезагрузки
+  function showWin() {
+    const gameOverText = document.getElementById('gameOverText');
+    const restartButton = document.getElementById('restartButton');
+    gameOverText.innerText = 'Вы победили!';
+    gameOverText.style.display = 'block';
+    restartButton.style.display = 'block';
+    restartButton.addEventListener('click', function() {
+      location.reload();
+    });
+  }
+
+  // Запускаем игровой цикл
+  gameLoop();
+</script>
+</body>
+</html>
