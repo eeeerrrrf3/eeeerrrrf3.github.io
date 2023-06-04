@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Открытие кейсов</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+    <img src="image/logo.png" alt="Логотип сайта" class="logo">
+</header>
+
+<section id="cases">
+    <div class="case-panel">
+        <div class="case">
+            <img src="image/case1.png" alt="Кейс 1">
+            <button onclick="openCase(1)">Открыть кейс</button>
+        </div>
+        <div class="case">
+            <img src="image/case2.png" alt="Кейс 2">
+            <button onclick="openCase(2)">Открыть кейс</button>
+        </div>
+        <div class="case">
+            <img src="image/case3.png" alt="Кейс 3">
+            <button onclick="openCase(3)">Открыть кейс</button>
+        </div>
+        <div class="case">
+            <img src="image/case4.png" alt="Кейс 4">
+            <button onclick="openCase(4)">Открыть кейс</button>
+        </div>
+        <div class="case">
+            <img src="image/case5.png" alt="Кейс 5">
+            <button onclick="openCase(5)">Открыть кейс</button>
+        </div>
+    </div>
+</section>
+    <section id="item-panel" style="display: none;">
+        <div id="item-images">
+            <!-- Здесь будут отображаться изображения предметов -->
+        </div>
+        <button id="open-button" onclick="openCase()">Открыть кейс</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

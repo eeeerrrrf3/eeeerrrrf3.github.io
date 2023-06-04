@@ -1,0 +1,55 @@
+header {
+    text-align: center;
+}
+
+#cases {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.case {
+    text-align: center;
+}
+
+#item-panel {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#item-images {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#item-images img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+#open-button {
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+header {
+    background-color: #f2f2f2; /* Цвет панели */
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo {
+    width: 100px; /* Размер логотипа */
+    height: auto;
+    margin-right: 10px;
+}
+
+.case-panel {
+    background-color: #111111; /* Цвет панели */
+    padding: 10px;
+    margin-bottom: 10px;
+}
