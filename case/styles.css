@@ -60,4 +60,5 @@ header {
     background-color: #111111; /* Цвет панели */
     padding: 10px;
     margin-bottom: 10px;
+    text-align: center; /* Добавлено свойство выравнивания текста по центру */
 }
