@@ -10,12 +10,15 @@ header {
     display: flex;
     justify-content: center; /* Изменили значение на "center" */
     align-items: flex-start; /* Добавили значение "flex-start" */
+    flex-wrap: wrap; /* Добавили свойство для переноса элементов на следующую строку */
     margin-top: 50px;
 }
 
 .case {
     text-align: center;
+    margin: 10px; /* Добавили отступ между кейсами */
 }
+
 
 #item-panel {
     text-align: center;
