@@ -59,6 +59,6 @@ header {
 .case-panel {
     background-color: #111111; /* Цвет панели */
     padding: 10px;
-    margin-bottom: 10px;
+    margin-top: 10px; /* Изменил свойство на margin-top для создания отступа сверху */
     text-align: center; /* Добавлено свойство выравнивания текста по центру */
 }
