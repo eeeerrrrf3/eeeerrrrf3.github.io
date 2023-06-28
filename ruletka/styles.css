@@ -1,0 +1,22 @@
+.roulette {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#items li {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 18px;
+}
+
+#spinButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+}
