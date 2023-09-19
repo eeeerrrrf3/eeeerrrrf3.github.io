@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+.message {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.box {
+    max-width: 50%;
+    height: auto;
+    transition: transform 1s;
+    position: relative;
+}
+
+.explosion {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.explosion-embed {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: none;
+}
