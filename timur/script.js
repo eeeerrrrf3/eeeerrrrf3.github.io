@@ -3,7 +3,7 @@ function explodeBox() {
     var explosion = document.getElementById('explosion');
     var box = document.getElementById('box');
 
-    message.innerHTML = 'Ты выбил: Халяву из Китая, сам летал(:';
+    message.innerHTML = 'Открой коробку и забери приз(:';
     explosion.style.display = 'block';
     box.style.visibility = 'hidden';
 }
