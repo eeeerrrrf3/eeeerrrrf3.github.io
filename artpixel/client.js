@@ -61,3 +61,13 @@ function draw(event) {
 
     ws.send(JSON.stringify(data));
 }
+
+let saveButton = document.getElementById('saveButton');
+saveButton.addEventListener('click', saveCanvas);
+
+function saveCanvas() {
+    var link = document.createElement('a');
+    link.download = 'artwork.png';
+    link.href = canvas.toDataURL()
+    link.click();
+}
