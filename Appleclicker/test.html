@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍎🍎Clicker🍎🍎</title>
+  <style>
+    body {
+      font-family: 'Number 514', sans-serif;
+      text-align: center;
+      background: hsla(283, 100%, 32%, 1);
+      background: linear-gradient(180deg, hsla(283, 100%, 32%, 1) 48%, hsla(314, 75%, 55%, 1) 100%);
+      background: -moz-linear-gradient(180deg, hsla(283, 100%, 32%, 1) 48%, hsla(314, 75%, 55%, 1) 100%);
+      background: -webkit-linear-gradient(180deg, hsla(283, 100%, 32%, 1) 48%, hsla(314, 75%, 55%, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#7700A5", endColorstr="#E235BA", GradientType=1 );
+    }
+    #score {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    @font-face {
+      font-family: 'Number 514';
+      src: url('demo-number514.ttf') format('opentype');
+    }
+
+    #apple {
+      width: 110px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    #progressBar {
+      width: 0;
+      height: 20px;
+      background-color: rgb(0, 255, 0);
+      border: 1px solid black;
+      border-radius: 10px;
+      transition: width 3s;
+      margin-top: 20px;
+    }
+
+    #bonusText {
+      display: none;
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    /* Стили для панели */
+    .bottom-panel {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ccc; /* Серый цвет */
+      padding: 10px 0; /* Поля внутри панели */
+    }
+  </style>
+</head>
+<body>
+  <h1 style="font-family: 'Roboto', sans-serif;">🍎🍎Clicker🍎🍎</h1>
+  <p id="score">0</p>
+  <img id="apple" src="apple.png" alt="Click Me!" />
+  <div id="progressBar"></div>
+  <div id="bonusText"></div>
+
+  <!-- Панель внизу экрана -->
+  <div class="bottom-panel">Это панель внизу экрана</div>
+
+  <script>
+    let score = 0;
+    let progress = 0;
+
+    function incrementScore() {
+      score++;
+      document.getElementById("score").textContent = "" + score;
+
+      const moveDirection = (score % 2 === 0) ? "10px" : "-10px";
+      document.getElementById("apple").style.transform = `translateX(${moveDirection})`;
+
+      if (score % 100 === 0) {
+        document.getElementById("bonusText").style.display = "block";
+        document.getElementById("bonusText").textContent = "+100";
+
+        setTimeout(function() {
+          document.getElementById("bonusText").style.display = "none";
+        }, 3000);
+
+        progress = 0;
+      } else {
+        progress = score % 100;
+        const progressWidth = (progress / 100) * 100 + "%";
+        document.getElementById("progressBar").style.width = progressWidth;
+      }
+    }
+
+    document.getElementById("apple").addEventListener("click", incrementScore);
+  </script>
+</body>
+</html>
