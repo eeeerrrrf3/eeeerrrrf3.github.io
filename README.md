@@ -12,4 +12,4 @@
 
 # [ArtPixel online>>>](https://eeeerrrrf3.github.io/artpixel/index.html)
 
-# [ArtPixel online>>>](https://eeeerrrrf3.github.io/Appleclicker/test.html)
+# [Apple clicker>>>](https://eeeerrrrf3.github.io/Appleclicker/test.html)
