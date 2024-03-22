@@ -11,3 +11,5 @@
 # [TopikRuletka>>>](https://eeeerrrrf3.github.io/ruletka/ruletka.html)
 
 # [ArtPixel online>>>](https://eeeerrrrf3.github.io/artpixel/index.html)
+
+# [ArtPixel online>>>](https://eeeerrrrf3.github.io/Appleclicker/test.html)
